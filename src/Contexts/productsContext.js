@@ -4,7 +4,7 @@ import { BASE_URL } from "../utils/utility";
 
 export const ProductsContext = createContext();
 
-export const ProductsContextProvider = ({ children }) => {
+export const ProductDataProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [categories, setCategories] = useState([]);
