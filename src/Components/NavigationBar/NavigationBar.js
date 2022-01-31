@@ -1,19 +1,20 @@
-/* eslint-disable no-unused-vars */
-import { FaHeart, FaShoppingCart } from "react-icons/fa";
+import { FaHeart, FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useUserData } from "../../Contexts/userDataContext";
+import { useAuth } from "../../hooks/useAuth";
 
 const NavigationBar = () => {
   const navigate = useNavigate();
   const {
     userData: { cart, wishlist },
   } = useUserData();
+  const { isUserLoggedIn } = useAuth();
 
   return (
     <nav className="bg-neutral-800 flex items-center py-3 px-3 fixed w-screen lg:w-full top-0 z-10">
       <h1
-        className="text-white text-2xl font-semibold"
+        className="text-white text-2xl font-semibold cursor-pointer"
         onClick={() => navigate("/")}
       >
         Nova Store
@@ -33,9 +34,15 @@ const NavigationBar = () => {
             <div className="badge">{wishlist.length}</div>
           )}
         </div>
-        <button aria-label="Login" onClick={() => navigate("/login")}>
-          <FiLogIn />
-        </button>
+        {isUserLoggedIn ? (
+          <button aria-label="Profile" onClick={() => navigate("/profile")}>
+            <FaUserCircle className="text-white" />
+          </button>
+        ) : (
+          <button aria-label="Login" onClick={() => navigate("/login")}>
+            <FiLogIn />
+          </button>
+        )}
       </div>
     </nav>
   );
