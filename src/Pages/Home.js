@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { useProducts } from "../Contexts/productsContext";
 import { Loading } from "../Components/Loading/Loading";
 
-const Home = () => {
+export const Home = () => {
   const navigate = useNavigate();
   const { loading, featuredProducts, categories } = useProducts();
 
@@ -87,5 +87,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;
