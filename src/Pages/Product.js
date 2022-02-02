@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/utility";
-import { Loading } from "../Components/Loading/Loading";
+import { Loading } from "../Components/Loading";
 import StarRatings from "react-star-ratings";
 import { FaTags } from "react-icons/fa";
 import { AddToCart } from "../Components/ProductsPageComponents/index";
@@ -27,7 +27,7 @@ export const Product = () => {
   return (
     <div className="pt-14">
       {loading ? (
-        <Loading />
+        <Loading withContainer={true} />
       ) : (
         <div className="grid grid-cols-2 h-screen">
           <div className="px-5">

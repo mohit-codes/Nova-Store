@@ -2,7 +2,7 @@ import React from "react";
 import BuyNowTextLinks from "../Components/BuyNowTextLinks";
 import { useNavigate } from "react-router";
 import { useProducts } from "../Contexts/productsContext";
-import { Loading } from "../Components/Loading/Loading";
+import { Loading } from "../Components/Loading";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export const Home = () => {
   return (
     <div className="mt-10 px-5 lg:mt-3 md:px-16 text-center">
       {loading ? (
-        <Loading />
+        <Loading withContainer={true} />
       ) : (
         <>
           <div className="text-center">
