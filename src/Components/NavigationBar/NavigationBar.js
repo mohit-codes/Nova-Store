@@ -24,15 +24,13 @@ const NavigationBar = () => {
           <button aria-label="Wishlist" onClick={() => navigate("/wishlist")}>
             <FaHeart />
           </button>
-          {cart.length > 0 && <div className="badge">{cart.length}</div>}
+          {wishlist.length > 0 && <div className="badge">{cart.length}</div>}
         </div>
         <div className="relative">
           <button aria-label="Cart" onClick={() => navigate("/cart")}>
             <FaShoppingCart />
           </button>
-          {wishlist.length > 0 && (
-            <div className="badge">{wishlist.length}</div>
-          )}
+          {cart.length > 0 && <div className="badge">{wishlist.length}</div>}
         </div>
         {isUserLoggedIn ? (
           <button aria-label="Profile" onClick={() => navigate("/profile")}>
