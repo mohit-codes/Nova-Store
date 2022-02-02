@@ -23,3 +23,7 @@ i {
 .badge {
   @apply -top-2 -right-2 absolute text-xs w-[1rem] h-[1rem] text-white bg-red-600 rounded-full font-medium flex justify-center items-center;
 }
+
+button:disabled {
+  cursor: not-allowed;
+}

@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useScrollToTop, useQueryParams } from "../hooks/index";
 import { BASE_URL, getTransformedProducts, filters } from "../utils/utility";
-import { Loading } from "../Components/Loading/Loading";
+import { Loading } from "../Components/Loading";
 import {
   Product,
   SortBy,
   CheckBox,
 } from "../Components/ProductsPageComponents/index";
 
-const Products = () => {
+export const Products = () => {
   useScrollToTop();
   const { products, setProducts, categories } = useProducts();
   const [searchParams] = useSearchParams();
@@ -62,6 +62,7 @@ const Products = () => {
               <p className="font-semibold">Filters</p>
               {filters.map((filter) => (
                 <CheckBox
+                  key={filter.label}
                   label={filter.label}
                   callback={(e) => {
                     setCheckBoxFilter(e, filter.name, filter.value);
@@ -99,7 +100,7 @@ const Products = () => {
         </div>
       </div>
       {loading ? (
-        <Loading />
+        <Loading withContainer={true} />
       ) : (
         <div className="grid grid-cols-[repeat(auto-fill,minmax(15rem,_1fr))] gap-4 px-4">
           {transformedProducts.map((product) => (
@@ -110,5 +111,3 @@ const Products = () => {
     </div>
   );
 };
-
-export default Products;
