@@ -24,16 +24,18 @@ export const Cart = () => {
   }, [userData.cart]);
 
   const isCartEmpty = cart.length < 1;
+
   return (
     <div className="pt-14 max-w-7xl ml-auto mr-auto h-full">
       <header className="p-8 text-xl font-semibold">
         <h2>Your cart</h2>
       </header>
-      {loading && !isCartEmpty ? (
-        <div className="flex justify-center items-center h-32">
+      {loading && (
+        <div className="flex justify-center items-center h-screen fixed top-0 left-0 w-full bg-opacity-10 bg-black">
           <Loading withContainer={false} />
         </div>
-      ) : (
+      )}
+      {!isCartEmpty && (
         <div className="flex justify-center h-full">
           <div className="m-2">
             {cart.map((item) => (
