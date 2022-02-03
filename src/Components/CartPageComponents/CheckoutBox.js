@@ -1,10 +1,10 @@
 export const CheckoutBox = ({ cart }) => {
   const totalPrice = () => {
-    return cart.reduce(
-      (acc, item) => acc + item.product.price * item.quantity,
-      0
-    );
+    return cart
+      .reduce((acc, item) => acc + item.product.price * item.quantity, 0)
+      .toLocaleString("en-IN");
   };
+
   return (
     <div className="border-l-2 border-gray-200 h-[75vh] ml-12 pl-8">
       <div className="pt-4">
@@ -21,7 +21,9 @@ export const CheckoutBox = ({ cart }) => {
             <div key={item._id} className="grid grid-cols-[2.5fr,1fr,1fr] py-4">
               <span className=" px-1">{item.product.name}</span>
               <span>{`x${item.quantity}`}</span>
-              <span>{`₹${item.quantity * item.product.price}`}</span>
+              <span>{`₹${(item.quantity * item.product.price).toLocaleString(
+                "en-IN"
+              )}`}</span>
             </div>
           ))}
         </div>
