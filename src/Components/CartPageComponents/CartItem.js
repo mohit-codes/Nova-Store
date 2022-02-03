@@ -32,7 +32,7 @@ export const CartItem = ({ item }) => {
           Move to wishlist
         </button>
       </div>
-      <div className="flex flex-col w-80 mx-2 font-medium">
+      <div className="flex flex-col w-80 mx-2 font-medium ml-auto">
         <button
           disabled={loading}
           aria-label="remove"
@@ -42,11 +42,13 @@ export const CartItem = ({ item }) => {
           <AiOutlineCloseCircle />
         </button>
         <p>{item.product.name}</p>
-        <p className="my-2">{`₹${item.product.price.toLocaleString()}`}</p>
+        <p className="my-2">{`₹${item.product.price.toLocaleString(
+          "en-IN"
+        )}`}</p>
         <div className="flex justify-evenly mt-4">
           <p> Quantity :</p>
           <button
-            aria-label="increase quantity"
+            aria-label="decrease quantity"
             disabled={item.quantity === 1 || loading}
             onClick={() => decrementQuantity(item.product._id, item.quantity)}
           >
@@ -54,7 +56,7 @@ export const CartItem = ({ item }) => {
           </button>
           <p>{item.quantity}</p>
           <button
-            aria-label="decrease quantity"
+            aria-label="increase quantity"
             disabled={loading}
             onClick={() => incrementQuantity(item.product._id, item.quantity)}
           >
