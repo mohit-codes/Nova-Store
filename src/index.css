@@ -26,4 +26,5 @@ i {
 
 button:disabled {
   cursor: not-allowed;
+  background-color: #d1d5db !important;
 }
