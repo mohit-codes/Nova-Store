@@ -15,7 +15,6 @@ export const useUserActions = (setLoading) => {
       const { data } = await axios.post(
         `${BASE_URL}/carts/add-item/${userProfile._id}/${_id}`
       );
-      console.log(data);
       if (data.success) {
         userDispatch({ type: "ADD_TO_CART", payload: { product: _id } });
       }
@@ -53,10 +52,10 @@ export const useUserActions = (setLoading) => {
   };
 
   const isAlreadyInWishlist = (_id) =>
-    userData.wishlist.some((product) => product === _id);
+    userData.wishlist.some((item) => item === _id);
 
   const isAlreadyInCart = (_id) =>
-    userData.cart.some((product) => product === _id);
+    userData.cart.some((item) => item.product === _id);
 
   const removeFromCart = async (_id) => {
     if (isUserLoggedIn && userProfile._id) {
