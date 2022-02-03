@@ -22,7 +22,7 @@ export const CartItem = ({ item }) => {
         <img
           src={item.product.image[0]}
           alt={item.product.name}
-          className="h-36 p-1"
+          className="h-36 p-1 object-contain"
         />
         <button
           className="bg-slate-200 rounded-md p-2 m-2 text-sm"

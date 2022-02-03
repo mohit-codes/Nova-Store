@@ -32,7 +32,7 @@ export const Product = () => {
       {loading ? (
         <Loading withContainer={true} />
       ) : (
-        <div className="grid grid-cols-2 h-screen">
+        <div className=" md:grid md:grid-cols-2 md:h-screen">
           <div className="px-5">
             <img
               src={product.image[imageSrc]}

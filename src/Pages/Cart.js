@@ -27,7 +27,7 @@ export const Cart = () => {
 
   return (
     <div className="pt-14 max-w-7xl ml-auto mr-auto h-full">
-      <header className="p-8 text-xl font-semibold">
+      <header className="py-4 px-12 md:p-8 text-xl font-semibold">
         <h2>Your cart</h2>
       </header>
       {loading && (
@@ -36,8 +36,8 @@ export const Cart = () => {
         </div>
       )}
       {!isCartEmpty && (
-        <div className="flex justify-center h-full">
-          <div className="m-2">
+        <div className="flex flex-col md:flex-row justify-center h-full">
+          <div className="md:m-2">
             {cart.map((item) => (
               <CartItem key={item.product._id} item={item} />
             ))}

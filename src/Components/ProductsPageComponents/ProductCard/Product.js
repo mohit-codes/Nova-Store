@@ -11,7 +11,7 @@ export const Product = ({ product }) => {
 
   return (
     <div
-      className="flex flex-col bg-white shadow-md rounded-sm cursor-pointer h-[27rem] p-2"
+      className="flex flex-col bg-white shadow-md rounded-sm cursor-pointer md:h-[27rem] p-2"
       onClick={() => navigate(`/product/${product._id}`)}
     >
       <div className="flex-grow p-2 relative">
