@@ -36,7 +36,7 @@ export const CartItem = ({ item }) => {
         <button
           disabled={loading}
           aria-label="remove"
-          className="ml-auto text-xl my-1"
+          className="ml-auto text-xl my-1 p-1"
           onClick={() => removeFromCart(item.product._id)}
         >
           <AiOutlineCloseCircle />
@@ -49,6 +49,7 @@ export const CartItem = ({ item }) => {
           <p> Quantity :</p>
           <button
             aria-label="decrease quantity"
+            className="p-1 rounded-full"
             disabled={item.quantity === 1 || loading}
             onClick={() => decrementQuantity(item.product._id, item.quantity)}
           >
@@ -57,6 +58,7 @@ export const CartItem = ({ item }) => {
           <p>{item.quantity}</p>
           <button
             aria-label="increase quantity"
+            className="p-1 rounded-full"
             disabled={loading}
             onClick={() => incrementQuantity(item.product._id, item.quantity)}
           >
