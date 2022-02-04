@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:8080";
+export const BASE_URL = "https://nova-store.herokuapp.com";
 export const filters = [
   { label: "Fast delivery", name: "delivery", value: "FAST_DELIVERY" },
   { label: "Free shipping", name: "shipping", value: "FREE_SHIPPING" },
