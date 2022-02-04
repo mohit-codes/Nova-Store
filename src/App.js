@@ -9,6 +9,8 @@ import {
   Product,
   Products,
   Profile,
+  Billing,
+  OrderConfirm,
 } from "./Pages/index";
 import NavigationBar from "./Components/NavigationBar/NavigationBar";
 import PrivateRoute from "./Components/PrivateRoute";
@@ -34,6 +36,12 @@ function App() {
         </Route>
         <Route path="/profile" element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
+        </Route>
+        <Route path="/billing" element={<PrivateRoute />}>
+          <Route path="/billing" element={<Billing />} />
+        </Route>
+        <Route path="/order-confirm" element={<PrivateRoute />}>
+          <Route path="/order-confirm" element={<OrderConfirm />} />
         </Route>
       </Routes>
     </div>
