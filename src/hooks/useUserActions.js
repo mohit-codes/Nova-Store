@@ -131,6 +131,38 @@ export const useUserActions = (setLoading) => {
     await removeFromCart(_id);
   };
 
+  const handleOrderConfirm = async () => {
+    if (isUserLoggedIn && userProfile._id) {
+      setLoading(true);
+      const { data } = await axios.post(
+        `${BASE_URL}/carts/order/${userProfile._id}`
+      );
+      if (data.success) {
+        userDispatch({ type: "EMPTY_CART" });
+        navigate("/order-confirm", { replace: true });
+      }
+      setLoading(false);
+    }
+  };
+
+  const handleCardPayment = async (token, cart) => {
+    if (isUserLoggedIn && userProfile._id) {
+      setLoading(true);
+      const { data } = await axios.post(
+        `${BASE_URL}/payment/${userProfile._id}`,
+        {
+          token,
+          cart,
+        }
+      );
+      if (data.success) {
+        userDispatch({ type: "EMPTY_CART" });
+        navigate("/order-confirm", { replace: true });
+      }
+      setLoading(false);
+    }
+  };
+
   return {
     addToCart,
     addToWishlist,
@@ -141,5 +173,7 @@ export const useUserActions = (setLoading) => {
     decrementQuantity,
     incrementQuantity,
     moveToWishlistOnClick,
+    handleCardPayment,
+    handleOrderConfirm,
   };
 };
