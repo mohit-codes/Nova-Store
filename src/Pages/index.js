@@ -6,3 +6,5 @@ export { Products } from "./Products";
 export { Profile } from "./Profile";
 export { Signup } from "./Signup";
 export { Wishlist } from "./Wishlist";
+export { Billing } from "./Billing";
+export { OrderConfirm } from "./OrderConfirm";
