@@ -52,6 +52,11 @@ export const userReducer = (state, action) => {
         ...state,
         wishlist: action.payload.wishlist || [],
       };
+    case "EMPTY_CART":
+      return {
+        ...state,
+        cart: [],
+      };
     case "ERASE":
       return {
         cart: [],
