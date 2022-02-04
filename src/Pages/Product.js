@@ -4,8 +4,11 @@ import axios from "axios";
 import { BASE_URL } from "../utils/utility";
 import { Loading } from "../Components/Loading";
 import StarRatings from "react-star-ratings";
-import { FaTags } from "react-icons/fa";
-import { AddToCart } from "../Components/ProductsPageComponents/index";
+import {
+  AddToCart,
+  ToggleWishlistButton,
+  Tag,
+} from "../Components/ProductsPageComponents/index";
 
 export const Product = () => {
   const { productId } = useParams();
@@ -29,7 +32,7 @@ export const Product = () => {
       {loading ? (
         <Loading withContainer={true} />
       ) : (
-        <div className="grid grid-cols-2 h-screen">
+        <div className=" md:grid md:grid-cols-2 md:h-screen">
           <div className="px-5">
             <img
               src={product.image[imageSrc]}
@@ -56,7 +59,9 @@ export const Product = () => {
           </div>
           <div className="flex flex-col py-2 px-3">
             <h1 className="text-3xl font-semibold">{product.name}</h1>
-            <p className="text-lg font-medium my-3">{`Price : ₹${product.price.toLocaleString()}`}</p>
+            <p className="text-lg font-medium my-3">{`Price : ₹${product.price.toLocaleString(
+              "en-IN"
+            )}`}</p>
             <StarRatings
               rating={product.rating}
               starRatedColor="#f6d005"
@@ -64,26 +69,18 @@ export const Product = () => {
               starDimension="20px"
             />
             <div className="flex space-x-2 my-3">
-              {product.freeShipping && (
-                <div className="py-1 px-2 bg-slate-300 rounded-md text-xs max-w-fit">
-                  <FaTags className="inline mr-1" /> Free Shipping
-                </div>
-              )}
-              {product.fastDelivery && (
-                <div className="py-1 px-2 bg-slate-300 rounded-md text-xs max-w-fit">
-                  <FaTags className="inline mr-1" />
-                  Fast Delivery
-                </div>
-              )}
+              {product.freeShipping && <Tag text="Free Shipping" />}
+              {product.fastDelivery && <Tag text="Fast Delivery" />}
             </div>
+            {!product.isInStock && (
+              <p className="text-lg font-semibold">Out of Stock!</p>
+            )}
             <div className="mt-2 text-sm space-x-3">
               <AddToCart
                 isInStock={product.isInStock}
                 productId={product._id}
               />
-              <button className="py-2 px-3 rounded-sm border-2 font-semibold">
-                Add to wishlist
-              </button>
+              <ToggleWishlistButton productId={product._id} />
             </div>
             <div className="mt-5 px-3">
               <p className="font-semibold text-lg">About the product</p>

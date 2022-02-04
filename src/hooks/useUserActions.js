@@ -15,7 +15,6 @@ export const useUserActions = (setLoading) => {
       const { data } = await axios.post(
         `${BASE_URL}/carts/add-item/${userProfile._id}/${_id}`
       );
-      console.log(data);
       if (data.success) {
         userDispatch({ type: "ADD_TO_CART", payload: { product: _id } });
       }
@@ -53,10 +52,10 @@ export const useUserActions = (setLoading) => {
   };
 
   const isAlreadyInWishlist = (_id) =>
-    userData.wishlist.some((product) => product === _id);
+    userData.wishlist.some((item) => item === _id);
 
   const isAlreadyInCart = (_id) =>
-    userData.cart.some((product) => product === _id);
+    userData.cart.some((item) => item.product === _id);
 
   const removeFromCart = async (_id) => {
     if (isUserLoggedIn && userProfile._id) {
@@ -132,6 +131,38 @@ export const useUserActions = (setLoading) => {
     await removeFromCart(_id);
   };
 
+  const handleOrderConfirm = async () => {
+    if (isUserLoggedIn && userProfile._id) {
+      setLoading(true);
+      const { data } = await axios.post(
+        `${BASE_URL}/carts/order/${userProfile._id}`
+      );
+      if (data.success) {
+        userDispatch({ type: "EMPTY_CART" });
+        navigate("/order-confirm", { replace: true });
+      }
+      setLoading(false);
+    }
+  };
+
+  const handleCardPayment = async (token, cart) => {
+    if (isUserLoggedIn && userProfile._id) {
+      setLoading(true);
+      const { data } = await axios.post(
+        `${BASE_URL}/payment/${userProfile._id}`,
+        {
+          token,
+          cart,
+        }
+      );
+      if (data.success) {
+        userDispatch({ type: "EMPTY_CART" });
+        navigate("/order-confirm", { replace: true });
+      }
+      setLoading(false);
+    }
+  };
+
   return {
     addToCart,
     addToWishlist,
@@ -142,5 +173,7 @@ export const useUserActions = (setLoading) => {
     decrementQuantity,
     incrementQuantity,
     moveToWishlistOnClick,
+    handleCardPayment,
+    handleOrderConfirm,
   };
 };

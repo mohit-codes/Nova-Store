@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 import { useState } from "react";
 import { useUserActions } from "../../../hooks/useUserActions";
 
-export const ToggleWishlist = ({ productId }) => {
+export const ToggleWishlistIcon = ({ productId }) => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const path = location.pathname + location.search;
@@ -33,6 +33,36 @@ export const ToggleWishlist = ({ productId }) => {
       }}
     >
       <FaHeart />
+    </button>
+  );
+};
+
+export const ToggleWishlistButton = ({ productId }) => {
+  const [loading, setLoading] = useState(false);
+  const location = useLocation();
+  const path = location.pathname + location.search;
+  const { isAlreadyInWishlist, addToWishlist, removeFromWishlist } =
+    useUserActions(setLoading);
+
+  return isAlreadyInWishlist(productId) ? (
+    <button
+      disabled={loading}
+      className="py-2 px-3 rounded-sm border-2 font-semibold text-red-500"
+      onClick={() => {
+        removeFromWishlist(productId);
+      }}
+    >
+      REMOVE FROM WISHLIST
+    </button>
+  ) : (
+    <button
+      disabled={loading}
+      className="py-2 px-3 rounded-sm border-2 font-semibold"
+      onClick={() => {
+        addToWishlist(productId, path);
+      }}
+    >
+      Add to wishlist
     </button>
   );
 };

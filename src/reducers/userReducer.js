@@ -8,12 +8,14 @@ export const userReducer = (state, action) => {
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        cart: state.cart.filter((item) => item !== action.payload.product),
+        cart: state.cart.filter(
+          (item) => item.product !== action.payload.product
+        ),
       };
     case "ADD_TO_WISHLIST":
       return {
         ...state,
-        wishlist: [...state.wishlist, { product: action.payload.product }],
+        wishlist: [...state.wishlist, action.payload.product],
       };
     case "REMOVE_FROM_WISHLIST":
       return {
@@ -31,7 +33,7 @@ export const userReducer = (state, action) => {
             : item
         ),
       };
-    case "DECREMENT-QUANTITY":
+    case "DECREMENT_QUANTITY":
       return {
         ...state,
         cart: state.cart.map((item) =>
@@ -49,6 +51,11 @@ export const userReducer = (state, action) => {
       return {
         ...state,
         wishlist: action.payload.wishlist || [],
+      };
+    case "EMPTY_CART":
+      return {
+        ...state,
+        cart: [],
       };
     case "ERASE":
       return {

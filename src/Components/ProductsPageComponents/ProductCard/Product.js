@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { FaTags } from "react-icons/fa";
-import { ToggleWishlist } from "./ToggleWishlist";
+import { ToggleWishlistIcon } from "./ToggleWishlist";
 import { AddToCart } from "./AddToCart";
 
 export const Product = ({ product }) => {
@@ -11,7 +11,7 @@ export const Product = ({ product }) => {
 
   return (
     <div
-      className="flex flex-col bg-white shadow-md rounded-sm cursor-pointer h-[27rem] p-2"
+      className="flex flex-col bg-white shadow-md rounded-sm cursor-pointer md:h-[27rem] p-2"
       onClick={() => navigate(`/product/${product._id}`)}
     >
       <div className="flex-grow p-2 relative">
@@ -24,12 +24,14 @@ export const Product = ({ product }) => {
           onMouseLeave={() => setImgIndex(0)}
         />
         <div className="absolute top-0 right-0">
-          <ToggleWishlist productId={product._id} />
+          <ToggleWishlistIcon productId={product._id} />
         </div>
         <div className="">
           <p className="m-1 font-medium">{trunc(product.name)}</p>
         </div>
-        <p className="font-semibold text-sm py-1">{`₹${product.price.toLocaleString()}`}</p>
+        <p className="font-semibold text-sm py-1">{`₹${product.price.toLocaleString(
+          "en-IN"
+        )}`}</p>
         <div className="space-y-2">
           {product.freeShipping && (
             <div className="py-1 px-2 bg-slate-300 rounded-md text-xs max-w-fit">

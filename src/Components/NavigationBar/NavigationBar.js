@@ -10,7 +10,6 @@ const NavigationBar = () => {
     userData: { cart, wishlist },
   } = useUserData();
   const { isUserLoggedIn } = useAuth();
-
   return (
     <nav className="bg-neutral-800 flex items-center py-3 px-3 fixed w-screen lg:w-full top-0 z-10">
       <h1
@@ -24,13 +23,15 @@ const NavigationBar = () => {
           <button aria-label="Wishlist" onClick={() => navigate("/wishlist")}>
             <FaHeart />
           </button>
-          {wishlist.length > 0 && <div className="badge">{cart.length}</div>}
+          {wishlist.length > 0 && (
+            <div className="badge">{wishlist.length}</div>
+          )}
         </div>
         <div className="relative">
           <button aria-label="Cart" onClick={() => navigate("/cart")}>
             <FaShoppingCart />
           </button>
-          {cart.length > 0 && <div className="badge">{wishlist.length}</div>}
+          {cart.length > 0 && <div className="badge">{cart.length}</div>}
         </div>
         {isUserLoggedIn ? (
           <button aria-label="Profile" onClick={() => navigate("/profile")}>

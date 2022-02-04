@@ -3,12 +3,12 @@ import { useUserData } from "../Contexts/userDataContext";
 import { useAuth } from "../hooks/useAuth";
 import { Loading } from "../Components/Loading";
 import axios from "axios";
+import { Product } from "../Components/ProductsPageComponents";
 import { BASE_URL } from "../utils/utility";
-import { CartItem, CheckoutBox } from "../Components/CartPageComponents";
 
-export const Cart = () => {
+export const Wishlist = () => {
   const { userProfile } = useAuth();
-  const [cart, setCart] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
   const [loading, setLoading] = useState(false);
   const { userData } = useUserData();
 
@@ -16,38 +16,34 @@ export const Cart = () => {
     (async () => {
       setLoading(true);
       const { data } = await axios.get(
-        `${BASE_URL}/carts/fetch-cart/${userProfile._id}`
+        `${BASE_URL}/wishlists/fetch-wishlist/${userProfile._id}`
       );
-      setCart(data.items || []);
+      setWishlist(data?.items || []);
       setLoading(false);
     })();
-  }, [userData.cart]);
+  }, [userData.wishlist]);
 
-  const isCartEmpty = cart.length < 1;
-
+  const isWishlistEmpty = wishlist.length < 1;
   return (
     <div className="pt-14 max-w-7xl ml-auto mr-auto h-full">
-      <header className="py-4 px-12 md:p-8 text-xl font-semibold">
-        <h2>Your cart</h2>
+      <header className="p-8 text-xl font-semibold">
+        <h2>Your Wishlist</h2>
       </header>
       {loading && (
-        <div className="flex justify-center items-center h-screen fixed top-0 left-0 w-full bg-opacity-10 bg-black">
+        <div className="z-10 flex justify-center items-center h-screen fixed top-0 left-0 w-full bg-opacity-10 bg-black">
           <Loading withContainer={false} />
         </div>
       )}
-      {!isCartEmpty && (
-        <div className="flex flex-col md:flex-row justify-center h-full">
-          <div className="md:m-2">
-            {cart.map((item) => (
-              <CartItem key={item.product._id} item={item} />
-            ))}
-          </div>
-          <CheckoutBox cart={cart} />
+      {!isWishlistEmpty && (
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(15rem,_1fr))] gap-4 p-4 h-full bg-gray-100">
+          {wishlist.map((product) => (
+            <Product key={product._id} product={product} />
+          ))}
         </div>
       )}
-      {!loading && isCartEmpty && (
+      {!loading && isWishlistEmpty && (
         <div className="flex justify-center items-center h-48 text-slate-500 font-semibold text-lg">
-          No products in cart!
+          No products in Wishlist!
         </div>
       )}
     </div>

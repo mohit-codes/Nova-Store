@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import InputBox from "../Components/InputBox";
 import PasswordInputField from "../Components/PasswordInputField";
 import { useAuth } from "../hooks/useAuth";
@@ -120,12 +119,6 @@ export const Signup = () => {
             {loading ? " Signing Up..." : "Sign Up"}
           </button>
         </form>
-        <div>
-          {`Already have an account? `}
-          <Link to="/login" className="font-medium">
-            Login
-          </Link>
-        </div>
       </div>
     </div>
   );

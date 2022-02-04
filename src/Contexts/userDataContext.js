@@ -10,7 +10,6 @@ export const UserDataProvider = ({ children }) => {
   };
 
   const [userData, userDispatch] = useReducer(userReducer, initialState);
-
   return (
     <userDataContext.Provider value={{ userData, userDispatch }}>
       {children}

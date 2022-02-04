@@ -8,7 +8,7 @@ export const AddToCart = ({ productId, isInStock }) => {
   const navigate = useNavigate();
   const path = location.pathname + location.search;
   const { addToCart, isAlreadyInCart } = useUserActions(setLoading);
-  console.log(isAlreadyInCart(productId));
+
   return isAlreadyInCart(productId) ? (
     <button
       disabled={loading}
