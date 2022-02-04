@@ -1,9 +1,16 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 export const CheckoutBox = ({ cart }) => {
-  const totalPrice = () => {
-    return cart
+  const navigate = useNavigate();
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  useEffect(() => {
+    const total = cart
       .reduce((acc, item) => acc + item.product.price * item.quantity, 0)
       .toLocaleString("en-IN");
-  };
+    setTotalAmount(total);
+  }, [cart]);
 
   return (
     <div className="border-l-2 border-gray-200 h-[75vh] md:ml-3 md:pl-3">
@@ -30,10 +37,13 @@ export const CheckoutBox = ({ cart }) => {
         <div className="w-full bg-gray-300 h-[1px]"></div>
         <div className="flex justify-end w-full my-2 space-x-2">
           <span>Grand total:</span>
-          <span className="font-semibold">{`₹${totalPrice()}`}</span>
+          <span className="font-semibold">{`₹${totalAmount}`}</span>
         </div>
         <div className="flex justify-end w-full mt-4">
-          <button className="py-3 px-4 bg-red-600 text-white font-semibold rounded-sm">
+          <button
+            className="py-3 px-4 bg-red-600 text-white font-semibold rounded-sm"
+            onClick={() => navigate("/billing", { state: { totalAmount } })}
+          >
             Checkout
           </button>
         </div>
