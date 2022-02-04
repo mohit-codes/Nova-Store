@@ -7,4 +7,4 @@ export {
 } from "./ProductCard/ToggleWishlist";
 export { AddToCart } from "./ProductCard/AddToCart";
 export { Tag } from "./Tag";
-export { Filters } from "./Filters";
+export { Filters, MobileViewFilters } from "./Filters";
