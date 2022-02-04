@@ -14,6 +14,7 @@ const InputBox = ({
       <input
         type={type}
         placeholder={placeholder}
+        required={true}
         id={id}
         value={value}
         onChange={callback}
