@@ -9,6 +9,7 @@ import {
   Product,
   SortBy,
   Filters,
+  MobileViewFilters,
 } from "../Components/ProductsPageComponents/index";
 
 export const Products = () => {
@@ -58,46 +59,11 @@ export const Products = () => {
             categoryList={categoryList}
             searchParams={searchParams}
           />
-          {/* <div className="mt-10 space-y-5">
-            <div>
-              <p className="font-semibold">Filters</p>
-              {filters.map((filter) => (
-                <CheckBox
-                  key={filter.label}
-                  label={filter.label}
-                  callback={(e) => {
-                    setCheckBoxFilter(e, filter.name, filter.value);
-                  }}
-                  isChecked={searchParams.get(filter.name) === filter.value}
-                />
-              ))}
-            </div>
-            <div>
-              <p className="font-semibold">Categories</p>
-              {categories.map((category) => (
-                <CheckBox
-                  isChecked={categoryList.some(
-                    (item) => category.name === item
-                  )}
-                  key={category._id}
-                  label={category.name}
-                  callback={(e) =>
-                    setCheckBoxCategory(e, "category", category.name)
-                  }
-                />
-              ))}
-            </div>
-          </div>
-          <button
-            className="bg-black text-white py-1 px-2 rounded-md text-sm font-semibold mt-5"
-            onClick={() => {
-              deleteSearchParamList({ name: "stock" });
-              deleteSearchParamList({ name: "delivery" });
-              deleteSearchParamList({ name: "category" });
-            }}
-          >
-            Clear Filters
-          </button> */}
+          <MobileViewFilters
+            categories={categories}
+            categoryList={categoryList}
+            searchParams={searchParams}
+          />
         </div>
       </div>
       {loading ? (
