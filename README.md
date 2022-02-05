@@ -60,3 +60,12 @@ Nova Store is an e-commerce application that consists of products like TV, Mobil
  - Number : 4242 4242 4242 4242
  - MM/YY : 08/22
  - CVV: 222
+
+## ScreenShots
+![1](https://user-images.githubusercontent.com/40515852/152631622-78fa86e5-48aa-4801-ac90-9286909d0a60.png)
+
+![2](https://user-images.githubusercontent.com/40515852/152631613-79b1cd26-5334-4ec7-a2a9-d0709413e0a7.png)
+
+![3](https://user-images.githubusercontent.com/40515852/152631606-fccec577-ec73-4f48-93e4-5d3fa772d38e.png)
+
+Made with 💛 
