@@ -1,5 +1,5 @@
 # Nova Store
-SupMart is an e-commerce application that consists of products and accessories related to jump rope.
+Nova Store is an e-commerce application that consists of products like TV, Mobile, Laptop, and SmartWatch.
 
 ## Technology Stack
 
