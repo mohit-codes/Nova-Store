@@ -18,12 +18,15 @@ export const Billing = () => {
     city: "",
     state: "",
   });
-  const isFormEmpty = Object.values(formState).some((val) => val === "");
+  const isFormEmpty = Object.values(formState).some(
+    (val) => !val.trim().length
+  );
 
   const { handleCardPayment, handleOrderConfirm } = useUserActions(setLoading);
   const location = useLocation();
   const amount = location.state?.totalAmount;
   const parsedAmount = parseInt(amount.replaceAll(",", ""));
+
   const handlePayment = (token) => {
     const cart = { total: parsedAmount };
     handleCardPayment(token, cart);
